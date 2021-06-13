@@ -36,7 +36,6 @@ public class CalcEngineString extends CalcEngine {
 					double result = runner.evaluate(pfx);
 					//update the displayString to hold the result as a HexString
 					displayString = Integer.toHexString((int) result).toUpperCase();
-					buildingDisplayValue = false;
 				}else{
 						throw new IncorrectFormatException("Incorrectly formatted infix expression.");
 				}
@@ -45,14 +44,15 @@ public class CalcEngineString extends CalcEngine {
 					String pfx = runner.infixToPostfix(displayString);
 					double result = runner.evaluate(pfx);
 					displayString = Double.toString(result);
-					buildingDisplayValue = false;
 				} else {
 					throw new IncorrectFormatException("Incorrectly formatted infix expression.");
 				}				
 			}
+			buildingDisplayValue = false;
 		}
 		catch(IncorrectFormatException e) {
 			displayString = "ERROR";
+			buildingDisplayValue = false;
 		}	
 	}
 	
